@@ -17,7 +17,6 @@ class Produk{
         return "$this->penulis, $this->penerbit";
     }
 }
-
     class CetakInfoProduk{
         public function cetak($produk){
             $str = "{$produk->judul} | {$produk->getLabel()} (Rp. { $produk->harga})";
@@ -31,3 +30,7 @@ $produk2 = new Produk("Uncharted", "Neil Dructmann","Sony Computer",25000);
 echo "Komik : ".$produk1->getLabel();
 echo "<br>";
 echo "Game : " . $produk2->getLabel();
+
+// Menjalankan fungsi cetak
+$infoProduk1 = new CetakInfoProduk();
+ echo $infoProduk1->cetak ($produk1);
