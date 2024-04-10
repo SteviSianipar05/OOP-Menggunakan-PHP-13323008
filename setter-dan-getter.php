@@ -1,9 +1,9 @@
 <?php
 
 class Produk{
-    public $judul;
-    public $penulis;
-    public $penerbit;
+    private $judul;
+    private $penulis;
+    private $penerbit;
     
     // Akses modifier dimana protected hanya dapat diakses class yang berkaitan sedangkan private hanya dapat digunakan oleh class itu sendiri
     protected $diskon = 0;
@@ -16,6 +16,17 @@ class Produk{
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
+    }
+
+    public function setJudul ($judul){
+        if (!is_string($judul)){
+            throw new Exception("Judul harus string");
+        }
+        $this->judul = $judul;
+    }
+
+    public function getJudul(){
+        return $this->judul;
     }
 
     public function getHarga(){
@@ -91,5 +102,12 @@ echo "<hr>";
 
 
 $produk2->setDiskon(50);
-
 echo $produk2->getHarga();
+echo "<hr>";
+
+
+// Setter
+$produk1->setJudul("JudulBaru");
+
+//Getter
+echo $produk1->getJudul();
