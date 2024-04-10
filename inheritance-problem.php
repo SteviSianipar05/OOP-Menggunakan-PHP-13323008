@@ -29,9 +29,9 @@ class Produk{
         $str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} 
         (Rp.$this->harga)";
         if ($this->tipe == "Komik"){
-            $str =" - {$this->jmlHalaman} Halaman.";
+            $str .=" - {$this->jmlHalaman} Halaman.";
         }else if ($this->tipe == "Game"){
-            $str = "~ {$this->waktuMain} Jam.";
+            $str .= "~ {$this->waktuMain} Jam.";
         }
         return $str;
         }
@@ -48,6 +48,6 @@ $produk1 = new Produk("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100, 
 
 $produk2 = new Produk("Uncharted", "Neil Dructmann","Sony Computer",250000, 0, 50, "Game");
 
-
-// Komik : Naruto | Masashi Kishimoto, Shonen Jump (Rp.30000) - 100 Halaman.
-// Game : Uncharted | Neil Dructmann, Sony Computer (Rp.250000) ~ 50 Jam
+echo $produk1->getInfoLengkap();
+echo "<br>";
+echo $produk2->getInfoLengkap();
