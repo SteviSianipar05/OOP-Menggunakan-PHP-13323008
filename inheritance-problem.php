@@ -31,10 +31,13 @@ class Produk{
         if ($this->tipe == "Komik"){
             $str =" - {$this->jmlHalaman} Halaman.";
         }else if ($this->tipe == "Game"){
-            $str = "~ {$this->waktuMain} Jam.h;
+            $str = "~ {$this->waktuMain} Jam.";
         }
-}
-    class CetakInfoProduk{
+        return $str;
+        }
+        }
+
+        class CetakInfoProduk{
         public function cetak( Produk $produk){
             $str = "{$produk->judul} | {$produk->getLabel()} (Rp.$produk->harga)";
             return $str;
