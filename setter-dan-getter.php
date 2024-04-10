@@ -6,7 +6,7 @@ class Produk{
     private $penerbit;
     
     // Akses modifier dimana protected hanya dapat diakses class yang berkaitan sedangkan private hanya dapat digunakan oleh class itu sendiri
-    protected $diskon = 0;
+    private $diskon = 0;
 
     private $harga;
 
@@ -19,9 +19,7 @@ class Produk{
     }
 
     public function setJudul ($judul){
-        if (!is_string($judul)){
-            throw new Exception("Judul harus string");
-        }
+        //if (!is_string($judul)){ throw new Exception("Judul harus string");} dapat gunakan untuk merperaman 
         $this->judul = $judul;
     }
 
@@ -29,8 +27,36 @@ class Produk{
         return $this->judul;
     }
 
+    public function setpenulis ( $penulis){
+        $this->penulis = $penulis;
+    }
+
+    public function getpenulis (){
+        return $this->penulis;
+    }
+
+    public function setPenerbit ( $penerbit){
+        $this->penerbit = $penerbit;
+    }
+
+    public function getPenerbit ( $penerbit){
+        $this->penerbit = $penerbit;
+    }
+
+    public function setDiskon($diskon){
+        $this->diskon = $diskon;
+    }
+
+    public function getDiskon(){
+        return $this->diskon;
+    }
+    
     public function getHarga(){
         return $this->harga - ($this->harga * $this->diskon /100);
+    }
+
+    public function setHarga($harga){
+        $this->harga = $harga; 
     }
 
     public function getLabel(){
@@ -71,12 +97,7 @@ class Produk{
 
             $this->waktuMain = $waktuMain;
 
-        }
-
-        public function setDiskon($diskon){
-            $this->diskon = $diskon;
-        }
-    
+        }    
 
         public function getInfoProduk() {
             $str = "Game : " . parent::getInfoProduk(). " ~ {$this->waktuMain} Jam.";
@@ -107,7 +128,10 @@ echo "<hr>";
 
 
 // Setter
-$produk1->setJudul("JudulBaru");
+$produk1->setJudul("Stevi");
 
 //Getter
 echo $produk1->getJudul();
+
+echo "<hr>";
+echo $produk1->getPenulis();
