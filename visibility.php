@@ -4,7 +4,11 @@ class Produk{
     public $judul;
     public $penulis;
     public $penerbit;
-    public $harga;
+    
+    // Akses modifier dimana protected hanya dapat diakses class yang berkaitan sedangkan private hanya dapat digunakan oleh class itu sendiri
+    protected $diskon = 0;
+
+    private $harga;
 
     public function __construct( $judul= "judul",$penulis = "penulis", $penerbit = "penerbit", 
     $harga = 0){
@@ -12,6 +16,10 @@ class Produk{
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
+    }
+
+    public function getHarga(){
+        return $this->harga - ($this->harga * $this->diskon /100);
     }
 
     public function getLabel(){
@@ -54,6 +62,11 @@ class Produk{
 
         }
 
+        public function setDiskon($diskon){
+            $this->diskon = $diskon;
+        }
+    
+
         public function getInfoProduk() {
             $str = "Game : " . parent::getInfoProduk(). " ~ {$this->waktuMain} Jam.";
             return $str;
@@ -74,3 +87,9 @@ $produk2 = new Game("Uncharted", "Neil Dructmann","Sony Computer",250000, 50);
 echo $produk1->getInfoProduk();
 echo "<br>";
 echo $produk2->getInfoProduk();
+echo "<hr>";
+
+
+$produk2->setDiskon(50);
+
+echo $produk2->getHarga();
