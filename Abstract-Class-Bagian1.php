@@ -26,3 +26,18 @@ class Jeruk extends Buah{
         // kunyah
     }
 }
+
+$apel = new Apel();
+echo $apel->makan();
+echo "<hr>";
+
+abstract class Buah {
+    private $warna;
+
+    abstract public function makan();
+
+    public function setWarna($warna){
+        $this->warna = $warna;
+    }
+}
+
