@@ -1,6 +1,6 @@
 <?php
 
-class Produk{
+ abstract class Produk{
     private $judul;
     private $penulis;
     private $penerbit;
@@ -63,7 +63,9 @@ class Produk{
         return "$this->penulis, $this->penerbit";
     }
 
-    public function getInfoProduk(){
+    abstract public function getInfoProduk();
+    
+    public function getInfo(){
         $str = " {$this->judul} | {$this->getLabel()} (Rp.$this->harga)";
         return $str;
         }
@@ -82,7 +84,7 @@ class Produk{
         }
         // pada class ini kita dapat menggunakan semua function yang pada produk tampa menambahkan class apapun
         public function getInfoProduk(){
-            $str = "Komik : " . parent::getInfoProduk() . " -  {$this->jmlHalaman}  Halaman.";
+            $str = "Komik : " . $this->getInfo() . " -  {$this->jmlHalaman}  Halaman.";
             return $str;
         }
 
@@ -100,38 +102,35 @@ class Produk{
         }    
 
         public function getInfoProduk() {
-            $str = "Game : " . parent::getInfoProduk(). " ~ {$this->waktuMain} Jam.";
+            $str = "Game : " . $this->getInfo(). " ~ {$this->waktuMain} Jam.";
             return $str;
         }
     }
 
         class CetakInfoProduk{
-        public function cetak( Produk $produk){
-            $str = "{$produk->judul} | {$produk->getLabel()} (Rp.$produk->harga)";
+            public $daftarProduk = array();
+
+            public function tambahProduk( Produk $produk){
+                $this->daftarProduk[] = $produk; 
+            }
+
+            public function cetak(){
+            $str = "DAFTAR PRODUK : <br>";
+
+            foreach( $this->daftarProduk as $p){
+                $str .= "- {$p->getInfoProduk()} <br>";
+            }
+
             return $str;
         }
     }
+
 
 $produk1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000, 100);
 
 $produk2 = new Game("Uncharted", "Neil Dructmann","Sony Computer",250000, 50);
 
-echo $produk1->getInfoProduk();
-echo "<br>";
-echo $produk2->getInfoProduk();
-echo "<hr>";
-
-
-$produk2->setDiskon(50);
-echo $produk2->getHarga();
-echo "<hr>";
-
-
-// Setter
-$produk1->setJudul("Stevi");
-
-//Getter
-echo $produk1->getJudul();
-
-echo "<hr>";
-echo $produk1->getPenulis();
+$cetakProduk = new CetakInfoProduk();
+$cetakProduk->tambahProduk ( $produk1);
+$cetakProduk->tambahProduk ( $produk2);
+echo $cetakProduk->cetak();
