@@ -17,14 +17,29 @@
 // echo ContohStatic::halo();
 
 class Contoh {
-    public $angka = 1;
-
+    public  static $angka = 1;
+    // nilai static akan tetap meskipun objeknya di instansiasi berulang kali
+    // Code menjadi procedural
     public function halo(){
-        return "Halo " . $this->angka++ . " kali.";
+        return "Halo " . self::$angka++ . " kali.";
     }
 }
 
 $obj = new Contoh;
 echo $obj->halo();
+echo "<br>";
+echo $obj->halo();
+echo "<br>";
+echo $obj->halo();
+
+echo "<hr>";
+
+$obj2 = new Contoh;
+echo $obj2->halo();
+echo "<br>";
+echo $obj2->halo();
+echo "<br>";
+echo $obj2->halo();
+
 
 ?>
