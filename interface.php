@@ -1,14 +1,18 @@
 <?php
 
- abstract class Produk{
-    private $judul;
-    private $penulis;
-    private $penerbit;
+interface InfoProduk{
+    public function getInfoProduk();
+}
+
+abstract class Produk{
+    protected $judul;
+    protected $penulis;
+    protected $penerbit;
     
     // Akses modifier dimana protected hanya dapat diakses class yang berkaitan sedangkan private hanya dapat digunakan oleh class itu sendiri
-    private $diskon = 0;
+    protected $diskon = 0;
 
-    private $harga;
+    protected $harga;
 
     public function __construct( $judul= "judul",$penulis = "penulis", $penerbit = "penerbit", 
     $harga = 0){
@@ -62,51 +66,43 @@
     public function getLabel(){
         return "$this->penulis, $this->penerbit";
     }
-
-    abstract public function getInfoProduk();
     
-    public function getInfo(){
-        $str = " {$this->judul} | {$this->getLabel()} (Rp.$this->harga)";
-        return $str;
-        }
+    abstract public function getInfo();
+
+}
+class Komik extends Produk implements InfoProduk {
+    public $jmlHalaman;
+
+    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jmlHalaman = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->jmlHalaman = $jmlHalaman;
     }
 
-    class Komik extends Produk {
-        public $jmlHalaman;
-
-        public function __construct($judul= "judul",$penulis = "penulis", $penerbit = "penerbit", 
-        $harga = 0, $jmlHalaman = 0){
-           
-            parent::__construct($judul,$penulis,$penerbit,$harga);
-
-           $this->jmlHalaman = $jmlHalaman;
-
-        }
-        // pada class ini kita dapat menggunakan semua function yang pada produk tampa menambahkan class apapun
-        public function getInfoProduk(){
-            $str = "Komik : " . $this->getInfo() . " -  {$this->jmlHalaman}  Halaman.";
-            return $str;
-        }
-
+    public function getInfo() {
+        return "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
     }
 
-    class Game extends Produk {
-        public $waktuMain;
+    public function getInfoProduk() {
+        return "Komik : " . $this->getInfo() . " - {$this->jmlHalaman} Halaman.";
+    }
+}
 
-        public function __construct($judul= "judul",$penulis = "penulis", $penerbit = "penerbit", 
-        $harga = 0, $waktuMain = 0 ) {
-            parent::__construct($judul,$penulis,$penerbit,$harga);
+class Game extends Produk implements InfoProduk {
+    public $waktuMain;
 
-            $this->waktuMain = $waktuMain;
+    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $waktuMain = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->waktuMain = $waktuMain;
+    }    
 
-        }    
-
-        public function getInfoProduk() {
-            $str = "Game : " . $this->getInfo(). " ~ {$this->waktuMain} Jam.";
-            return $str;
-        }
+    public function getInfo() {
+        return "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
     }
 
+    public function getInfoProduk() {
+        return "Game : " . $this->getInfo() . " ~ {$this->waktuMain} Jam.";
+    }
+}
         class CetakInfoProduk{
             public $daftarProduk = array();
 
