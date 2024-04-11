@@ -1,43 +1,34 @@
 <?php
 
-class Buah{
-    private $warna;
-
-    public function makan(){
-        // kunyah
-        // nyam..nyam..nyam
-    }
-
-    public function setWarna($warna){
-        $this->warna = $warna;
-    }
+interface Buah{
+    public function makan();
+    public function setWarna($warna);
 }
 
-class Apel extends Buah{
+class Apel implements Buah, Benda{
+    protected $warna;
     public function makan(){
         // kunyah
         // sampai bagian tengah
     }
+    public function setWarna($warna){
+        $this->warna = $warna;
+    }
 }
 
-class Jeruk extends Buah{
+class Jeruk implements Buah{
+    protected $warna;
     public function makan(){
         // kupas
         // kunyah
     }
-}
-
-$apel = new Apel();
-echo $apel->makan();
-echo "<hr>";
-
-abstract class Buah {
-    private $warna;
-
-    abstract public function makan();
-
     public function setWarna($warna){
         $this->warna = $warna;
     }
+}
+
+
+interface Benda {
+    public function setUkuran($ukurab);
 }
 
