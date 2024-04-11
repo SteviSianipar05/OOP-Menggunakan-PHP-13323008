@@ -1,3 +1,5 @@
+<?php
+
 class Game extends Produk implements InfoProduk {
     public $waktuMain;
 
