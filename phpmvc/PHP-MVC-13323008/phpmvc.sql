@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3308
--- Generation Time: Apr 10, 2024 at 05:34 PM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 12, 2024 at 06:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,8 +42,9 @@ CREATE TABLE `mahasiswa` (
 INSERT INTO `mahasiswa` (`id`, `nama`, `nim`, `jurusan`, `email`) VALUES
 (1, 'Alfred G Manurung', '13323034', 'D4 Rekayasa Perangkat Lunak', 'alfred00@gmail.com'),
 (2, 'Stevi Sianipar', '13323008', 'D3 Teknologi Komputer', 'stevi00@gmail.com'),
-(3, 'Misael Tampubolo', '13323017', 'D3 Teknologi Komputer', 'misael00@gmail.com'),
-(6, 'Poltak Harahap', '13323000', 'Teknik Komputer', 'poltakgaming@gmail.com');
+(3, 'Adelia Pangaribuan', '11323444', 'D3 Teknologi Komputer', 'lia00@gmail.com'),
+(6, 'Rahel Napitupulu', '13323019', 'Teknik Komputer', 'raratul@gmail.com'),
+(10, 'Dealova', '13323007', 'D3 Teknik Komputer', 'dealova@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +64,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
