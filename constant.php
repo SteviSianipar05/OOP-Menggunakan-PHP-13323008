@@ -9,7 +9,7 @@
 // const UMUR = 32;
 // // dapat disimpan kedalam class sehingga menggunakan konsep oriented
 // echo UMUR;
-
+///
 
 // class Coba {
 //     const NAMA = 'Stevi';
