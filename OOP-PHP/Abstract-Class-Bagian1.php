@@ -5,7 +5,7 @@ class Buah{
 
     public function makan(){
         // kunyah
-        // nyam..nyam..nyam
+        // nyam..nyam..nyamm
     }
 
     public function setWarna($warna){
